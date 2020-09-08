@@ -1,10 +1,11 @@
 import http from "http";
+import app from "./src/app.js";
 import dotenv from "dotenv";
 dotenv.config();
 
 const port = process.env.PORT || 3000;
 
-const server = http.createServer();
+const server = http.createServer(app);
 
 server.listen(port);
 
@@ -22,7 +23,7 @@ function onError(e){
 	console.log(e);
 }
 
-function onUnhandledRejection(promise, reason){
+function onUnhandledRejection(reason, promise){
 	console.log(`Unhandled rejection at: ${promise}\n Reason: ${reason}`);
 }
 function  onUncaughtException(err, origin){
