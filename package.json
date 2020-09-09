@@ -6,17 +6,23 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node --experimental-modules server.js",
+    "start": "nodemon --experimental-modules server.js",
     "lint": "eslint . --fix"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "nodemon": "^2.0.4"
+    "nodemon": "^2.0.4",
+    "pg": "^8.3.3",
+    "pg-hstore": "^2.3.3",
+    "sequelize": "^6.3.5"
   },
   "devDependencies": {
+    "@babel/core": "^7.11.6",
+    "@babel/node": "^7.10.5",
     "eslint": "^7.8.1"
   }
 }
