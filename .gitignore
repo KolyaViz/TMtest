@@ -2,3 +2,4 @@
 .env
 .idea
 .eslintrc.json
+.babelrc

@@ -1,10 +1,12 @@
 import express from "express";
-
+import userRouter from  "./user.router.js"
 const router = express.Router();
 
 router.get("/", (req, res, next)=>{
 	res.status(200).send("Home");
 });
+
+router.use("/users", userRouter);
 
 router.use("/*", (req, res, next)=>{
 	res.status(404).send("not-found");

@@ -1,9 +1,14 @@
 import http from "http";
 import app from "./src/app.js";
 import "dotenv/config.js";
-import {sequelize} from "./src/models/index.js";
+import sequelize from "./src/models/index.js";
 
-sequelize.sync({ force: true }).then(async () => {
+
+(async ()=>{
+	// await sequelize.sync();
+	await sequelize.sync({force: true});
+
+
 	const port = process.env.PORT || 3000;
 
 	const server = http.createServer(app);
@@ -30,4 +35,4 @@ sequelize.sync({ force: true }).then(async () => {
 	function  onUncaughtException(err, origin){
 		console.log(`Exception: ${err}\n Exception origin: ${origin}`);
 	}
-});
+})()
