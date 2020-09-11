@@ -1,5 +1,6 @@
 import Sequelize from "sequelize";
 import user from "./user";
+import item from "./item";
 
 const sequelize =  new Sequelize(
 	process.env.DATABASE,
@@ -34,7 +35,8 @@ const sequelize =  new Sequelize(
 // export {User};
 
 const models = {
-	User: user(sequelize)
+	User: user(sequelize),
+	Item: item(sequelize)
 };
 
 export {sequelize};

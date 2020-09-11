@@ -1,12 +1,10 @@
-import Sequelize from "sequelize";
-const {DataTypes} = Sequelize;
-
+import {DataTypes} from "sequelize";
 
 const user = (sequelize) => {
 	const User = sequelize.define("user", {
 		userName: {
 			type: DataTypes.STRING
-		},
+		}
 	});
 	return User;
 };
