@@ -3,13 +3,12 @@ const {DataTypes} = Sequelize;
 
 
 const user = (sequelize) => {
-    const User = sequelize.define('user', {
-        username: {
-            type: DataTypes.STRING,
-            unique: true,
-        },
-    });
-    return User;
+	const User = sequelize.define("user", {
+		userName: {
+			type: DataTypes.STRING
+		},
+	});
+	return User;
 };
 
 export default user;

@@ -1,7 +1,6 @@
 import Sequelize from "sequelize";
-// import user from "./user.js";
+import user from "./user";
 
-const {DataTypes} = Sequelize;
 const sequelize =  new Sequelize(
 	process.env.DATABASE,
 	process.env.DATABASE_USER,
@@ -12,19 +11,19 @@ const sequelize =  new Sequelize(
 	}
 );
 
-sequelize.authenticate().then(() => {
-	console.log('Connection to database has been established successfully.');
-}).catch(err => {
-	console.error('Unable to connect to database:', err);
-});
+// sequelize.authenticate().then(() => {
+// 	console.log('Connection to database has been established successfully.');
+// }).catch(err => {
+// 	console.error('Unable to connect to database:', err);
+// });
 
 
-const User = sequelize.define('user', {
-	username: {
-		type: DataTypes.STRING,
-		unique: true,
-	},
-});
+// const User = sequelize.define('user', {
+// 	username: {
+// 		type: DataTypes.STRING,
+// 		unique: true,
+// 	},
+// });
 
 
 // (async () => {
@@ -32,6 +31,12 @@ const User = sequelize.define('user', {
 // 	// Code here
 // })();
 
-export {User};
+// export {User};
 
-export default sequelize;
+const models = {
+	User: user(sequelize)
+};
+
+export {sequelize};
+
+export default models;
