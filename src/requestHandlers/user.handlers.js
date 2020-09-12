@@ -34,3 +34,10 @@ export async function getUserById(req, res, next){
 		next(e);
 	}
 }
+export async function deleteUserById(req, res, next){
+	const {id} = req.params;
+
+	const result = await User.destroy({where: {id}});
+
+	res.send("user deleted")
+}
