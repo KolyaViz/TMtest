@@ -1,5 +1,5 @@
 import express from "express";
-import {addNewItem, deleteItemById, getAllItems, getItemById, updateItemById} from "../requestHandlers/item.handlers.js"
+import {addNewItem, deleteItemById, getAllItems, getItemById, updateItemById} from "../requestHandlers/item.handlers.js";
 import wrapper from "../utils/wrapper.js";
 const router = express.Router();
 
