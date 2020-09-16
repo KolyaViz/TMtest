@@ -1,0 +1,17 @@
+<div class=".container">
+    <nav>
+        <% if(userName) {%>
+            <a href="/users/user_page"><%= userName%></a> |
+        <% } %>
+        <a href="/items/items_page">items</a> |
+        <% if(!userName) {%>
+            <a href="/auth/SignUp">Sign Up</a> |
+        <% } %>
+        <% if(!userName) {%>
+            <a href="/auth/logIn">Log In</a> |
+        <% } %>
+        <% if(userName) {%>
+        <a href="/auth/logOut">Log Out</a> |
+        <% } %>
+    </nav>
+</div>

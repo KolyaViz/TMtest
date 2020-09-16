@@ -4,11 +4,13 @@ const user = (sequelize) => {
 	const User = sequelize.define("user", {
 		userName: {
 			type: DataTypes.STRING,
-			allowNull: false
+			allowNull: false,
+			unique: 'compositeIndex'
 		},
 		email:{
 			type: DataTypes.STRING,
-			allowNull: false
+			allowNull: false,
+			unique: true
 		},
 		password:{
 			type: DataTypes.STRING,

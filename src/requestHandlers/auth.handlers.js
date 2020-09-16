@@ -3,6 +3,10 @@ import bcrypt from "bcrypt";
 import models from "../models";
 const {User} = models;
 
+export async function signUpPage(req, res, next){
+	res.status(200).render("pages/register_page.ejs",{failedSignUp: false})
+}
+
 export async function signUp(req, res, next){
 	const {userName, email, password}  = req.body;
 	const hash = await bcrypt.hash(password,10);
@@ -15,42 +19,24 @@ export async function signUp(req, res, next){
 		)
 	});
 	if(user){
-		return res.send("Username or email already in user");
+		return res.render("pages/register_page.ejs",{failedSignUp: true});
 	}
 
 	const newUser = await User.create({userName, email, password: hash});
 
-	req.session.email = email;
-	console.log(email, req.session.email)
-	return res.status(200).json({
-		message: "user created successfully"
+	req.login(newUser, function(err) {
+		if (err) { return next(err); }
+		return res.redirect("/users/user_page")
 	});
 }
 
 export async function logIn(req, res, next){
 
+	res.status(200).render("pages/login_page.ejs", {failedLogIn: false})
 }
 
-// export async function logIn(req, res, next){
-// 	const {email, password} = req.body;
-//
-// 	const user = await User.findOne({
-// 		where: {email}
-// 	});
-//
-// 	if(!user){
-// 		return res.send("wrong username or password");
-// 	}
-//
-// 	const result = await bcrypt.compare(password,user.password);
-//
-// 	if(!result){
-// 		return res.send("wrong username or password");
-// 	}
-//
-// 	req.session.email = email;
-//
-// 	return res.status(200).send(req.session.email);
-//
-// }
+export async function logOut(req, res, next){
+	req.logout();
+	res.redirect("/")
+}
 

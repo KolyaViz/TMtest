@@ -2,7 +2,15 @@ import {DataTypes} from "sequelize";
 
 const item = (sequelize)=>{
 	const Item = sequelize.define("item",{
-		name: DataTypes.STRING
+		name: {
+			type: DataTypes.STRING,
+			allowNull: false
+		},
+		price: {
+			type: DataTypes.INTEGER,
+			allowNull: false
+		},
+		description: DataTypes.STRING
 	});
 	return Item;
 };

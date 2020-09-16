@@ -24,3 +24,7 @@ export async function deleteUserById(req, res, next){
 
 	res.send("user deleted");
 }
+export async function userPage(req, res, next){
+	const {userName, email} = req.user
+	res.render("pages/user_page.ejs",{userName,email})
+}

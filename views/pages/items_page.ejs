@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <%- include("../template/head.ejs")-%>
+<body>
+
+<%- include("../template/logo.ejs")-%>
+<form action="/items/items_page" method="GET">
+    <select name="sort">
+        <option value="name">name</option>
+        <option value="price">price</option>
+    </select>
+    <select name="direction">
+        <option value="s_l">from smallest to largest</option>
+        <option value="l_s">from largest to smallest</option>
+    </select>
+    <br>
+
+    min: <input type="text" name="min"> max: <input type="text" name="max">
+    <button type="submit">sort</button>
+</form>
+<ul>
+    <% for(let i = 0; i < items.length; i++) { %>
+        <li>
+            <a href="/items/one_item_page/<%=items[i].id%>">
+                name: <%=items[i].name%> <br>
+                price: <%=items[i].price%> <br>
+                description: <%=items[i].description%> <br>
+            </a>
+        </li>
+    <% } %>
+
+</ul>
+
+<%- include("../template/footer.ejs")-%>
+
+</body>
+<html>
