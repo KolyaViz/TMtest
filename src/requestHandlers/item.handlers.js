@@ -37,9 +37,10 @@ export async function deleteItemById(req, res, next){
 }
 
 export async function itemsPage(req, res, next){
-	let {sort = "name", direction="ASC", min = 0, max = Number.MAX_SAFE_INTEGER} = url.parse(req.url, true).query;
-	min = parseInt(min);
-	max = parseInt(max);
+	let {sort, direction, min, max} = url.parse(req.url, true).query;
+	if(!min){min=0}
+	if(!max){max=Number.MAX_SAFE_INTEGER}
+
 	let items = await Item.findAll({
 		where: {
 			price: {
