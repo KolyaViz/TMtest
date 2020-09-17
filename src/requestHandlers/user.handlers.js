@@ -4,17 +4,17 @@ const {User} = models;
 
 export async function getAllUsers(req, res, next){
 
-		const users = await User.findAll();
-		res.send(users);
+	const users = await User.findAll();
+	res.send(users);
 
 }
 export async function getUserById(req, res, next){
 
-		const {id} = req.params;
-		const user = await User.findByPk(id);
-		res.status(200).json({
-			user: user.toJSON()
-		});
+	const {id} = req.params;
+	const user = await User.findByPk(id);
+	res.status(200).json({
+		user: user.toJSON()
+	});
 
 }
 export async function deleteUserById(req, res, next){
@@ -25,6 +25,6 @@ export async function deleteUserById(req, res, next){
 	res.send("user deleted");
 }
 export async function userPage(req, res, next){
-	const {userName, email} = req.user
-	res.render("pages/user_page.ejs",{userName,email})
+	const {userName, email} = req.user;
+	res.render("pages/user_page.ejs",{userName,email});
 }

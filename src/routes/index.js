@@ -7,7 +7,7 @@ const router = express.Router();
 router.get("/", (req, res, next)=>{
 	let userName = false;
 	if(req.user) userName = req.user.userName;
-	console.log(req.user)
+	console.log(req.user);
 	res.status(200).render("pages/home.ejs", {userName});
 });
 

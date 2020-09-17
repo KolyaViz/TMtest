@@ -10,7 +10,7 @@ import "./utils/passport.config.js";
 
 const app = express();
 
-app.set("view engine", "ejs")
+app.set("view engine", "ejs");
 
 app.use(session({
 	secret: process.env.SESSION_SECRET,

@@ -1,12 +1,12 @@
 import express from "express";
 import {
-    addNewItem,
-    deleteItemById,
-    getAllItems,
-    getItemById,
-    itemsPage,
-    updateItemById,
-    oneItemPage
+	addNewItem,
+	deleteItemById,
+	getAllItems,
+	getItemById,
+	itemsPage,
+	updateItemById,
+	oneItemPage
 } from "../requestHandlers/item.handlers.js";
 import wrapper from "../utils/wrapper.js";
 const router = express.Router();

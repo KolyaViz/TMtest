@@ -7,7 +7,7 @@ const router = express.Router();
 
 
 router.get("/", wrapper(getAllUsers));
-router.get("/user_page",authMiddleware, wrapper(userPage))
+router.get("/user_page",authMiddleware, wrapper(userPage));
 router.get("/:id",wrapper(getUserById));
 router.delete("/:id", wrapper(deleteUserById));
 

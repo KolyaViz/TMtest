@@ -4,7 +4,7 @@ import models from "../models";
 const {User} = models;
 
 export async function signUpPage(req, res, next){
-	res.status(200).render("pages/register_page.ejs",{failedSignUp: false})
+	res.status(200).render("pages/register_page.ejs",{failedSignUp: false});
 }
 
 export async function signUp(req, res, next){
@@ -26,17 +26,17 @@ export async function signUp(req, res, next){
 
 	req.login(newUser, function(err) {
 		if (err) { return next(err); }
-		return res.redirect("/users/user_page")
+		return res.redirect("/users/user_page");
 	});
 }
 
 export async function logIn(req, res, next){
 
-	res.status(200).render("pages/login_page.ejs", {failedLogIn: false})
+	res.status(200).render("pages/login_page.ejs", {failedLogIn: false});
 }
 
 export async function logOut(req, res, next){
 	req.logout();
-	res.redirect("/")
+	res.redirect("/");
 }
 

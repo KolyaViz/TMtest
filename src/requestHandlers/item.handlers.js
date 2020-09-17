@@ -1,5 +1,6 @@
 import models from "../models";
-import url from "url"
+import url from "url";
+import {Op} from "sequelize";
 const {Item} = models;
 
 export async function addNewItem(req, res, next){
@@ -36,16 +37,22 @@ export async function deleteItemById(req, res, next){
 }
 
 export async function itemsPage(req, res, next){
-	const {sort, direction, min, max} = url.parse(req.url, true).query;
-	let items = await Item.findAll();
+	let {sort = "name", direction="ASC", min = 0, max = Number.MAX_SAFE_INTEGER} = url.parse(req.url, true).query;
+	min = parseInt(min);
+	max = parseInt(max);
+	let items = await Item.findAll({
+		where: {
+			price: {
+				[Op.gte]: min,
+				[Op.lte]: max
+			}
+		},
+		order: [
+			[sort, direction],
+		]
+	});
 
-	if(sort == "name") items = items.sort();
-	if(sort == "price") items = items.sort((a,b)=>a.price-b.price);
-	if(min) items = items.filter(i=>i.price>=min);
-	if(max) items = items.filter(i=>i.price<=max);
-	if(direction) items = items.reverse();
-
-	res.render("pages/items_page.ejs",{items})
+	res.render("pages/items_page.ejs",{items});
 }
 export async function oneItemPage(req, res, next){
 	const {id} = req.params;

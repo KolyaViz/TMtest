@@ -5,7 +5,7 @@ const user = (sequelize) => {
 		userName: {
 			type: DataTypes.STRING,
 			allowNull: false,
-			unique: 'compositeIndex'
+			unique: "compositeIndex"
 		},
 		email:{
 			type: DataTypes.STRING,
