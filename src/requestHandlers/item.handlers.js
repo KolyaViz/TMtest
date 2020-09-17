@@ -38,6 +38,8 @@ export async function deleteItemById(req, res, next){
 
 export async function itemsPage(req, res, next){
 	let {sort, direction, min, max} = url.parse(req.url, true).query;
+	if(!sort){sort="name"}
+	if(!direction){direction="ASC"}
 	if(!min){min=0}
 	if(!max){max=Number.MAX_SAFE_INTEGER}
 
