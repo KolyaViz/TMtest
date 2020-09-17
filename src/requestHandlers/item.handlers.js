@@ -1,6 +1,8 @@
 import models from "../models";
 import url from "url";
 import {Op} from "sequelize";
+import {sequelize} from "../models";
+
 const {Item} = models;
 
 export async function addNewItem(req, res, next){
@@ -43,17 +45,9 @@ export async function itemsPage(req, res, next){
 	if(!min){min=0}
 	if(!max){max=Number.MAX_SAFE_INTEGER}
 
-	let items = await Item.findAll({
-		where: {
-			price: {
-				[Op.gte]: min,
-				[Op.lte]: max
-			}
-		},
-		order: [
-			[sort, direction],
-		]
-	});
+	let items = await sequelize.query(`SELECT * FROM items AS item WHERE (item.price >= ${min} AND item.price <= ${max}) 
+	ORDER BY item.${sort} ${direction}`);
+	items = items[0]
 
 	res.render("pages/items_page.ejs",{items});
 }
